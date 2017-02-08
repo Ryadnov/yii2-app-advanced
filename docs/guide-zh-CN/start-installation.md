@@ -1,60 +1,56 @@
-Installation
-============
+安装
+===
 
-## Requirements
+## 要求
 
-The minimum requirement by this project template is that your Web server supports PHP 5.4.0.
+此项目模板的最低要求是您的Web服务器支持PHP 5.4.0。
 
-## Installing using Composer
+## 使用Composer安装
 
-If you do not have [Composer](http://getcomposer.org/), follow the instructions in the
-[Installing Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide/start-installation.md#installing-via-composer) section of the definitive guide to install it.
+如果您没有 [Composer](http://getcomposer.org/)，请按照最终指南的
+[安装Yii](https://github.com/yiisoft/yii2/blob/master/docs/guide/start-installation.md#installing-via-composer) 部分中的说明进行安装。
 
-With Composer installed, you can then install the application using the following commands:
+安装Composer后，您可以使用以下命令安装应用程序：
 
     composer global require "fxp/composer-asset-plugin:^1.2.0"
     composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
 
-The first command installs the [composer asset plugin](https://github.com/francoispluchino/composer-asset-plugin/)
-which allows managing bower and npm package dependencies through Composer. You only need to run this command
-once for all. The second command installs the advanced application in a directory named `yii-application`.
-You can choose a different directory name if you want.
+第一个命令安装 [composer asset插件](https://github.com/francoispluchino/composer-asset-plugin/)
+第一个命令安装composer asset插件，它允许通过Composer管理bower和npm包依赖。 您只需要为所有运行此命令一次。 第二个命令将高级应用程序安装在名为 `yii-application` 的目录中。 如果需要，您可以选择不同的目录名称。 
 
-## Install from an Archive File
+## 从归档文件安装
 
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `advanced` that is directly under the Web root.
+将从 [yiiframework.com](http://www.yiiframework.com/download/) 下载的归档文件解压缩到直接位于Web根目录下的名为advanced的目录。
 
-Then follow the instructions given in the next subsection.
+然后按照下一小节中给出的说明进行操作。
 
 
-## Preparing application
+## 准备应用程序
 
-After you install the application, you have to conduct the following steps to initialize
-the installed application. You only need to do these once for all.
+安装应用程序后，必须执行以下步骤来初始化已安装的应用程序。 这些操作仅需执行一次即可。
 
-1. Open a console terminal, execute the `init` command and select `dev` as environment.
+1. 打开控制台终端，执行 `init` 命令并选择 `dev` 作为环境。
 
    ```
    /path/to/php-bin/php /path/to/yii-application/init
    ```
 
-   If you automate it with a script you can execute `init` in non-interactive mode.
+   如果使用脚本自动化，可以在非交互模式下执行 `init` 。
 
    ```
    /path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All
    ```
 
-2. Create a new database and adjust the `components['db']` configuration in `common/config/main-local.php` accordingly.
+2. 创建一个新的数据库，并相应地调整 `common/config/main-local.php` 中的 `components['db']` 配置。
 
-3. Open a console terminal, apply migrations with command `/path/to/php-bin/php /path/to/yii-application/yii migrate`.
+3. 打开控制台终端，执行迁移命令 `/path/to/php-bin/php /path/to/yii-application/yii migrate`.
 
-4. Set document roots of your web server:
+4. 设置Web服务器的文档根目录：
 
-   - for frontend `/path/to/yii-application/frontend/web/` and using the URL `http://frontend.dev/`
-   - for backend `/path/to/yii-application/backend/web/` and using the URL `http://backend.dev/`
+   - 对于前端 `/path/to/yii-application/frontend/web/` 并且使用URL `http://frontend.dev/`
+   - 对于后端 `/path/to/yii-application/backend/web/` 并且使用URL `http://backend.dev/`
 
-   For Apache it could be the following:
+   对于Apache，使用如下配置：
 
    ```apache
        <VirtualHost *:80>
@@ -74,12 +70,6 @@ the installed application. You only need to do these once for all.
                DirectoryIndex index.php
 
                # ...other settings...
-               # Apache 2.4
-               Require all granted
-               
-               ## Apache 2.2
-               # Order allow,deny
-               # Allow from all
            </Directory>
        </VirtualHost>
        
@@ -100,17 +90,11 @@ the installed application. You only need to do these once for all.
                DirectoryIndex index.php
 
                # ...other settings...
-               # Apache 2.4
-               Require all granted
-               
-               ## Apache 2.2
-               # Order allow,deny
-               # Allow from all
            </Directory>
        </VirtualHost>
    ```
 
-   For nginx:
+   nginx使用如下配置：
 
    ```nginx
        server {
@@ -200,37 +184,36 @@ the installed application. You only need to do these once for all.
        }
    ```
 
-5. Change the hosts file to point the domain to your server.
+5. 更改主机文件以将域指向您的服务器。
 
    - Windows: `c:\Windows\System32\Drivers\etc\hosts`
    - Linux: `/etc/hosts`
 
-   Add the following lines:
+   添加以下行：
 
    ```
    127.0.0.1   frontend.dev
    127.0.0.1   backend.dev
    ```
 
-To login into the application, you need to first sign up, with any of your email address, username and password.
-Then, you can login into the application with same email address and password at any time.
+要登录应用程序，您需要先注册您的电子邮件地址，用户名和密码。
+然后，您可以随时使用相同的电子邮件地址和密码登录应用程序。
 
 
-> Note: if you want to run advanced template on a single domain so `/` is frontend and `/admin` is backend, refer
-> to [Using advanced project template at shared hosting](topic-shared-hosting.md).
+> 注意：如果要在单个域上运行高级模板，则 `/` 是前端，而 `/admin` 是后端，请参阅[在共享主机上使用高级项目模板](topic-shared-hosting.md)。
 
-## Installing using Vagrant
+## 使用Vagrant安装
 
-This way is the easiest but long (~20 min).
+这是最简单的安装方式，但是耗时较长（约20分钟）。
 
-**This installation way doesn't require pre-installed software (such as web-server, PHP, MySQL etc.)** - just do next steps!
+**这种安装方式不需要预先安装的软件（如Web服务器，PHP，MySQL等）** - 只是做下一步！
 
-#### Manual for Linux/Unix users
+#### Linux/Unix 用户手册
 
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
-3. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
-3. Prepare project:
+1. 安装 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. 安装 [Vagrant](https://www.vagrantup.com/downloads.html)
+3. 创建 GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
+3. 准备项目:
    
    ```bash
    git clone https://github.com/yiisoft/yii2-app-advanced.git
@@ -238,54 +221,56 @@ This way is the easiest but long (~20 min).
    cp vagrant-local.example.yml vagrant-local.yml
    ```
    
-4. Place your GitHub personal API token to `vagrant-local.yml`
-5. Change directory to project root:
+4. 将您的GitHub个人API令牌放置到 `vagrant-local.yml`
+5. 将目录更改为项目根目录：
 
    ```bash
    cd yii2-app-advanced
    ```
 
-5. Run commands:
+5. 执行如下命令：
 
    ```bash
    vagrant plugin install vagrant-hostmanager
    vagrant up
    ```
    
-That's all. You just need to wait for completion! After that you can access project locally by URLs:
+等待完成后，在浏览器中访问如下URL即可
+
 * frontend: http://y2aa-frontend.dev
 * backend: http://y2aa-backend.dev
    
-#### Manual for Windows users
+#### Windows 用户手册
 
-1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. Install [Vagrant](https://www.vagrantup.com/downloads.html)
-3. Reboot
-4. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
-5. Prepare project:
-   * download repo [yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced/archive/master.zip)
-   * unzip it
-   * go into directory `yii2-app-advanced-master/vagrant/config`
-   * copy `vagrant-local.example.yml` to `vagrant-local.yml`
+1. 安装 [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. 安装 [Vagrant](https://www.vagrantup.com/downloads.html)
+3. 重启电脑
+4. 创建 GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens)
+5. 准备项目:
+   * 下载 [yii2-app-advanced](https://github.com/yiisoft/yii2-app-advanced/archive/master.zip)
+   * 解压
+   * 进入 `yii2-app-advanced-master/vagrant/config` 文件夹
+   * 重命名 `vagrant-local.example.yml` 为 `vagrant-local.yml`
 
-6. Place your GitHub personal API token to `vagrant-local.yml`
-7. Add the following lines to [hosts file](https://en.wikipedia.org/wiki/Hosts_(file)):
+6. 将您的GitHub个人API令牌放置到 `vagrant-local.yml`
+7. 添加如下代码到 [hosts 文件](https://en.wikipedia.org/wiki/Hosts_(file)):
    
    ```
    192.168.83.137 y2aa-frontend.dev
    192.168.83.137 y2aa-backend.dev
    ```
 
-8. Open terminal (`cmd.exe`), **change directory to project root** and run commands:
+8. 打开终端 (`cmd.exe`), **切换路径至项目根目录** 并且执行如下命令:
 
    ```bash
    vagrant plugin install vagrant-hostmanager
    vagrant up
    ```
    
-   (You can read [here](http://www.wikihow.com/Change-Directories-in-Command-Prompt) how to change directories in command prompt) 
+   (猛击 [这里](http://www.wikihow.com/Change-Directories-in-Command-Prompt) 查看如何在命令提示符中更改目录) 
 
-That's all. You just need to wait for completion! After that you can access project locally by URLs:
+等待完成后，在浏览器中访问如下URL即可
+
 * frontend: http://y2aa-frontend.dev
 * backend: http://y2aa-backend.dev
 
